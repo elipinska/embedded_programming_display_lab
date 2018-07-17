@@ -1,0 +1,20 @@
+Starting MAKE...
+creating project.mk 
+
+lib/psocconfig.asm
+
+lib/psocconfigtbl.asm
+
+./boot.asm
+
+Linking..
+
+  ROM 5% full. 669 out of 16384 bytes used (does not include absolute areas).
+
+  RAM 8% full. 19 bytes used (does not include stack usage).
+
+Built with ICCM8C STD V7.05.00
+
+ 
+displayLab - 0 error(s) 0 warning(s) 22:39:05
+

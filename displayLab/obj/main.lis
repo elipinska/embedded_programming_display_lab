@@ -1,0 +1,509 @@
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 0000                   .dbfunc e setDataLines _setDataLines fV
+ 0000           ;           data -> X-4
+ 0000           _setDataLines::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002                   .dbline 14
+ 0002           ; //----------------------------------------------------------------------------
+ 0002           ; // C main line
+ 0002           ; //----------------------------------------------------------------------------
+ 0002           ; 
+ 0002           ; #include <m8c.h>        // part specific constants and macros
+ 0002           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0002           ; 
+ 0002           ; #define SHORT_DELAY 5
+ 0002           ; #define RETURN_DELAY 1000
+ 0002           ; #define SEND_DELAY 10
+ 0002           ; #define DISPLAY_LENGTH 16
+ 0002           ; 
+ 0002           ; 
+ 0002           ; void setDataLines(unsigned char data) {
+ 0002                   .dbline 15
+ 0002           ;       PRT2DR &= 0x0F;
+ 0002 41080F            and REG[0x8],15
+ 0005                   .dbline 16
+ 0005           ;       PRT2DR |= data << 4;
+ 0005 52FC              mov A,[X-4]
+ 0007 64                asl A
+ 0008 64                asl A
+ 0009 64                asl A
+ 000A 64                asl A
+ 000B 5300              mov [__r0],A
+ 000D 5D08              mov A,REG[0x8]
+ 000F 2A00              or A,[__r0]
+ 0011 6008              mov REG[0x8],A
+ 0013                   .dbline -2
+ 0013           L1:
+ 0013 20                pop X
+ 0014                   .dbline 0 ; func end
+ 0014 7F                ret
+ 0015                   .dbsym l data -4 c
+ 0015                   .dbend
+ 0015                   .dbfunc e setE _setE fV
+ 0015           _setE::
+ 0015                   .dbline -1
+ 0015                   .dbline 19
+ 0015           ; }
+ 0015           ; 
+ 0015           ; void setE(void) {
+ 0015                   .dbline 20
+ 0015           ;       PRT2DR |= 0x08;
+ 0015 430808            or REG[0x8],8
+ 0018                   .dbline -2
+ 0018           L2:
+ 0018                   .dbline 0 ; func end
+ 0018 7F                ret
+ 0019                   .dbend
+ 0019                   .dbfunc e clearE _clearE fV
+ 0019           _clearE::
+ 0019                   .dbline -1
+ 0019                   .dbline 23
+ 0019           ; }
+ 0019           ; 
+ 0019           ; void clearE(void) {
+ 0019                   .dbline 24
+ 0019           ;       PRT2DR &= 0xF7;
+ 0019 4108F7            and REG[0x8],-9
+ 001C                   .dbline -2
+ 001C           L3:
+ 001C                   .dbline 0 ; func end
+ 001C 7F                ret
+ 001D                   .dbend
+ 001D                   .dbfunc e setRs _setRs fV
+ 001D           _setRs::
+ 001D                   .dbline -1
+ 001D                   .dbline 27
+ 001D           ; }
+ 001D           ; 
+ 001D           ; void setRs(void) {
+ 001D                   .dbline 28
+ 001D           ;       PRT2DR |= 0x04;
+ 001D 430804            or REG[0x8],4
+ 0020                   .dbline -2
+ 0020           L4:
+ 0020                   .dbline 0 ; func end
+ 0020 7F                ret
+ 0021                   .dbend
+ 0021                   .dbfunc e clearRs _clearRs fV
+ 0021           _clearRs::
+ 0021                   .dbline -1
+ 0021                   .dbline 31
+ 0021           ; }
+ 0021           ; 
+ 0021           ; void clearRs(void) {
+ 0021                   .dbline 32
+ 0021           ;       PRT2DR &= 0xFB;
+ 0021 4108FB            and REG[0x8],-5
+ 0024                   .dbline -2
+ 0024           L5:
+ 0024                   .dbline 0 ; func end
+ 0024 7F                ret
+ 0025                   .dbend
+ 0025                   .dbfunc e delay _delay fV
+ 0025           ;              i -> X+0
+ 0025           ;          loops -> X-5
+ 0025           _delay::
+ 0025                   .dbline -1
+ 0025 10                push X
+ 0026 4F                mov X,SP
+ 0027 3802              add SP,2
+ 0029                   .dbline 35
+ 0029           ; }
+ 0029           ; 
+ 0029           ; void delay(unsigned int loops) {
+ 0029                   .dbline 39
+ 0029           ;       //volatile ensures that the loop will be executed, there will be no optimisation on the operation below
+ 0029           ;       volatile int i; 
+ 0029           ;       
+ 0029           ;       for (i = 0; i < loops; i++);
+ 0029 560100            mov [X+1],0
+ 002C 560000            mov [X+0],0
+ 002F 8006              xjmp L10
+ 0031           L7:
+ 0031                   .dbline 39
+ 0031           L8:
+ 0031                   .dbline 39
+ 0031 7701              inc [X+1]
+ 0033 0F0000            adc [X+0],0
+ 0036           L10:
+ 0036                   .dbline 39
+ 0036 5201              mov A,[X+1]
+ 0038 13FC              sub A,[X-4]
+ 003A 5200              mov A,[X+0]
+ 003C 1BFB              sbb A,[X-5]
+ 003E CFF2              jc L7
+ 0040           X0:
+ 0040                   .dbline -2
+ 0040           L6:
+ 0040 38FE              add SP,-2
+ 0042 20                pop X
+ 0043                   .dbline 0 ; func end
+ 0043 7F                ret
+ 0044                   .dbsym l i 0 I
+ 0044                   .dbsym l loops -5 i
+ 0044                   .dbend
+ 0044                   .dbfunc e sendByte _sendByte fV
+ 0044           ;         isData -> X-5
+ 0044           ;         myByte -> X-4
+ 0044           _sendByte::
+ 0044                   .dbline -1
+ 0044 10                push X
+ 0045 4F                mov X,SP
+ 0046                   .dbline 42
+ 0046           ; }
+ 0046           ; 
+ 0046           ; void sendByte(unsigned char myByte, BOOL isData) {
+ 0046                   .dbline 43
+ 0046           ;       if (isData) {
+ 0046 3DFB00            cmp [X-5],0
+ 0049 A005              jz L12
+ 004B                   .dbline 44
+ 004B           ;               setRs();        
+ 004B                   .dbline 44
+ 004B 9FD0              xcall _setRs
+ 004D                   .dbline 45
+ 004D           ;       } else {
+ 004D 8003              xjmp L13
+ 004F           L12:
+ 004F                   .dbline 45
+ 004F                   .dbline 46
+ 004F           ;               clearRs();
+ 004F 9FD0              xcall _clearRs
+ 0051                   .dbline 47
+ 0051           ;       }
+ 0051           L13:
+ 0051                   .dbline 49
+ 0051           ;       
+ 0051           ;       setE();
+ 0051 9FC2              xcall _setE
+ 0053                   .dbline 50
+ 0053           ;       setDataLines(myByte >> 4);
+ 0053 52FC              mov A,[X-4]
+ 0055 67                asr A
+ 0056 67                asr A
+ 0057 67                asr A
+ 0058 67                asr A
+ 0059 210F              and A,15
+ 005B 08                push A
+ 005C 9FA2              xcall _setDataLines
+ 005E                   .dbline 51
+ 005E           ;       delay(SHORT_DELAY);
+ 005E 5000              mov A,0
+ 0060 08                push A
+ 0061 5005              mov A,5
+ 0063 08                push A
+ 0064 9FBF              xcall _delay
+ 0066 38FD              add SP,-3
+ 0068                   .dbline 52
+ 0068           ;       clearE();
+ 0068 9FAF              xcall _clearE
+ 006A                   .dbline 54
+ 006A           ;       
+ 006A           ;       delay(SHORT_DELAY);
+ 006A 5000              mov A,0
+ 006C 08                push A
+ 006D 5005              mov A,5
+ 006F 08                push A
+ 0070 9FB3              xcall _delay
+ 0072                   .dbline 56
+ 0072           ;       
+ 0072           ;       setE();
+ 0072 9FA1              xcall _setE
+ 0074                   .dbline 57
+ 0074           ;       setDataLines(myByte & 0x0F);
+ 0074 52FC              mov A,[X-4]
+ 0076 210F              and A,15
+ 0078 08                push A
+ 0079 9F85              xcall _setDataLines
+ 007B 38FD              add SP,-3
+ 007D                   .dbline 58
+ 007D           ;       delay(SHORT_DELAY);
+ 007D 5000              mov A,0
+ 007F 08                push A
+ 0080 5005              mov A,5
+ 0082 08                push A
+ 0083 9FA0              xcall _delay
+ 0085                   .dbline 59
+ 0085           ;       clearE();
+ 0085 9F92              xcall _clearE
+ 0087                   .dbline 61
+ 0087           ;       
+ 0087           ;       delay(SEND_DELAY);
+ 0087 5000              mov A,0
+ 0089 08                push A
+ 008A 500A              mov A,10
+ 008C 08                push A
+ 008D 9F96              xcall _delay
+ 008F 38FC              add SP,-4
+ 0091                   .dbline -2
+ 0091           L11:
+ 0091 20                pop X
+ 0092                   .dbline 0 ; func end
+ 0092 7F                ret
+ 0093                   .dbsym l isData -5 c
+ 0093                   .dbsym l myByte -4 c
+ 0093                   .dbend
+ 0093                   .dbfunc e returnHome _returnHome fV
+ 0093           _returnHome::
+ 0093                   .dbline -1
+ 0093                   .dbline 65
+ 0093           ;       
+ 0093           ; }
+ 0093           ; 
+ 0093           ; void returnHome(void) {
+ 0093                   .dbline 66
+ 0093           ;       sendByte(0x02, FALSE);
+ 0093 5000              mov A,0
+ 0095 08                push A
+ 0096 5002              mov A,2
+ 0098 08                push A
+ 0099 9FA9              xcall _sendByte
+ 009B                   .dbline 67
+ 009B           ;       delay(RETURN_DELAY);
+ 009B 5003              mov A,3
+ 009D 08                push A
+ 009E 50E8              mov A,-24
+ 00A0 08                push A
+ 00A1 9F82              xcall _delay
+ 00A3 38FC              add SP,-4
+ 00A5                   .dbline -2
+ 00A5           L14:
+ 00A5                   .dbline 0 ; func end
+ 00A5 7F                ret
+ 00A6                   .dbend
+ 00A6                   .dbfunc e modeSet _modeSet fV
+ 00A6           ;     byteToSend -> X+0
+ 00A6           ;         scroll -> X-5
+ 00A6           ;      increment -> X-4
+ 00A6           _modeSet::
+ 00A6                   .dbline -1
+ 00A6 10                push X
+ 00A7 4F                mov X,SP
+ 00A8 3801              add SP,1
+ 00AA                   .dbline 70
+ 00AA           ; }
+ 00AA           ; 
+ 00AA           ; void modeSet(BOOL increment, BOOL scroll) {
+ 00AA                   .dbline 71
+ 00AA           ;       unsigned char byteToSend = 0x04; 
+ 00AA 560004            mov [X+0],4
+ 00AD                   .dbline 73
+ 00AD           ;       
+ 00AD           ;       if (increment) {
+ 00AD 3DFC00            cmp [X-4],0
+ 00B0 A004              jz L16
+ 00B2                   .dbline 74
+ 00B2           ;               byteToSend |= 0x02;
+ 00B2                   .dbline 74
+ 00B2 2F0002            or [X+0],2
+ 00B5                   .dbline 75
+ 00B5           ;       } 
+ 00B5           L16:
+ 00B5                   .dbline 77
+ 00B5           ;       
+ 00B5           ;       if (scroll) {
+ 00B5 3DFB00            cmp [X-5],0
+ 00B8 A004              jz L18
+ 00BA                   .dbline 78
+ 00BA           ;               byteToSend |= 0x01;
+ 00BA                   .dbline 78
+ 00BA 2F0001            or [X+0],1
+ 00BD                   .dbline 79
+ 00BD           ;       }
+ 00BD           L18:
+ 00BD                   .dbline 81
+ 00BD           ;       
+ 00BD           ;       sendByte(byteToSend, FALSE);
+ 00BD 5000              mov A,0
+ 00BF 08                push A
+ 00C0 5200              mov A,[X+0]
+ 00C2 08                push A
+ 00C3 9F7F              xcall _sendByte
+ 00C5 38FE              add SP,-2
+ 00C7                   .dbline -2
+ 00C7           L15:
+ 00C7 38FF              add SP,-1
+ 00C9 20                pop X
+ 00CA                   .dbline 0 ; func end
+ 00CA 7F                ret
+ 00CB                   .dbsym l byteToSend 0 c
+ 00CB                   .dbsym l scroll -5 c
+ 00CB                   .dbsym l increment -4 c
+ 00CB                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 0000           _displayBuffer::
+ 0000                   .blkb 2
+                        .area idata(rom,lit)
+ 0000 4557              .byte 'E,'W
+                        .area data(ram, con, rel)
+ 0002                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 0002                   .blkb 2
+                        .area idata(rom,lit)
+ 0002 4120              .byte 'A,32
+                        .area data(ram, con, rel)
+ 0004                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 0004                   .blkb 2
+                        .area idata(rom,lit)
+ 0004 4C49              .byte 'L,'I
+                        .area data(ram, con, rel)
+ 0006                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 0006                   .blkb 2
+                        .area idata(rom,lit)
+ 0006 5049              .byte 'P,'I
+                        .area data(ram, con, rel)
+ 0008                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 0008                   .blkb 2
+                        .area idata(rom,lit)
+ 0008 4E53              .byte 'N,'S
+                        .area data(ram, con, rel)
+ 000A                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 000A                   .blkb 2
+                        .area idata(rom,lit)
+ 000A 4B41              .byte 'K,'A
+                        .area data(ram, con, rel)
+ 000C                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 000C                   .blkb 2
+                        .area idata(rom,lit)
+ 000C 2020              .byte 32,32
+                        .area data(ram, con, rel)
+ 000E                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 000E                   .blkb 2
+                        .area idata(rom,lit)
+ 000E 2020              .byte 32,32
+                        .area data(ram, con, rel)
+ 0010                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 0010                   .blkb 1
+                        .area idata(rom,lit)
+ 0010 00                .byte 0
+                        .area data(ram, con, rel)
+ 0011                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 0011                   .dbsym e displayBuffer _displayBuffer A[17:17]c
+                        .area text(rom, con, rel)
+ 00CB                   .dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
+ 00CB                   .dbfunc e refreshDisplay _refreshDisplay fV
+ 00CB           ;              i -> X+0
+ 00CB           _refreshDisplay::
+ 00CB                   .dbline -1
+ 00CB 10                push X
+ 00CC 4F                mov X,SP
+ 00CD 3802              add SP,2
+ 00CF                   .dbline 87
+ 00CF           ;               
+ 00CF           ; }
+ 00CF           ; 
+ 00CF           ; char displayBuffer[DISPLAY_LENGTH + 1] = {'E', 'W', 'A', ' ', 'L', 'I', 'P', 'I', 'N', 'S', 'K', 'A', ' ', ' ', ' ', ' ', (char )0};
+ 00CF           ; 
+ 00CF           ; void refreshDisplay(void) {
+ 00CF                   .dbline 90
+ 00CF           ;       int i;
+ 00CF           ;       
+ 00CF           ;       returnHome();
+ 00CF 9FC2              xcall _returnHome
+ 00D1                   .dbline 91
+ 00D1           ;       for (i = 0; i < DISPLAY_LENGTH; i++) {
+ 00D1 560100            mov [X+1],0
+ 00D4 560000            mov [X+0],0
+ 00D7           L21:
+ 00D7                   .dbline 91
+ 00D7                   .dbline 92
+ 00D7           ;               sendByte(displayBuffer[i], TRUE);
+ 00D7 5001              mov A,1
+ 00D9 08                push A
+ 00DA 5201              mov A,[X+1]
+ 00DC 0100              add A,<_displayBuffer
+ 00DE 5300              mov [__r1],A
+ 00E0 3E00              mvi A,[__r1]
+ 00E2 08                push A
+ 00E3 9F5F              xcall _sendByte
+ 00E5 38FE              add SP,-2
+ 00E7                   .dbline 93
+ 00E7           ;       }
+ 00E7           L22:
+ 00E7                   .dbline 91
+ 00E7 7701              inc [X+1]
+ 00E9 0F0000            adc [X+0],0
+ 00EC                   .dbline 91
+ 00EC 5201              mov A,[X+1]
+ 00EE 1110              sub A,16
+ 00F0 5200              mov A,[X+0]
+ 00F2 3180              xor A,-128
+ 00F4 1980              sbb A,(0 ^ 0x80)
+ 00F6 CFE0              jc L21
+ 00F8           X1:
+ 00F8                   .dbline -2
+ 00F8           L20:
+ 00F8 38FE              add SP,-2
+ 00FA 20                pop X
+ 00FB                   .dbline 0 ; func end
+ 00FB 7F                ret
+ 00FC                   .dbsym l i 0 I
+ 00FC                   .dbend
+ 00FC                   .dbfunc e initDisplay _initDisplay fV
+ 00FC           _initDisplay::
+ 00FC                   .dbline -1
+ 00FC                   .dbline 97
+ 00FC           ;       
+ 00FC           ; }
+ 00FC           ; 
+ 00FC           ; void initDisplay(void) {
+ 00FC                   .dbline 98
+ 00FC           ;       modeSet(TRUE, FALSE);
+ 00FC 5000              mov A,0
+ 00FE 08                push A
+ 00FF 5001              mov A,1
+ 0101 08                push A
+ 0102 9FA2              xcall _modeSet
+ 0104 38FE              add SP,-2
+ 0106                   .dbline -2
+ 0106           L25:
+ 0106                   .dbline 0 ; func end
+ 0106 7F                ret
+ 0107                   .dbend
+ 0107                   .dbfunc e main _main fV
+ 0107           _main::
+ 0107                   .dbline -1
+ 0107                   .dbline 103
+ 0107           ;       
+ 0107           ; }
+ 0107           ; 
+ 0107           ; void main(void)
+ 0107           ; {
+ 0107                   .dbline 107
+ 0107           ;       // M8C_EnableGInt ; // Uncomment this line to enable Global Interrupts
+ 0107           ;       // Insert your main routine code here.
+ 0107           ;       
+ 0107           ;       initDisplay();
+ 0107 9FF3              xcall _initDisplay
+ 0109 800D              xjmp L28
+ 010B           L27:
+ 010B                   .dbline 109
+ 010B           ;       
+ 010B           ;       while (1) {
+ 010B                   .dbline 110
+ 010B           ;               refreshDisplay();
+ 010B 9FBE              xcall _refreshDisplay
+ 010D                   .dbline 111
+ 010D           ;               delay(10000);
+ 010D 5027              mov A,39
+ 010F 08                push A
+ 0110 5010              mov A,16
+ 0112 08                push A
+ 0113 9F10              xcall _delay
+ 0115 38FE              add SP,-2
+ 0117                   .dbline 112
+ 0117           ;       }
+ 0117           L28:
+ 0117                   .dbline 109
+ 0117 8FF3              xjmp L27
+ 0119           X2:
+ 0119                   .dbline -2
+ 0119           L26:
+ 0119                   .dbline 0 ; func end
+ 0119 8FFF              jmp .
+ 011B                   .dbend
