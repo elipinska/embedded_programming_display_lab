@@ -5,15 +5,14 @@
 #include <m8c.h>        // part specific constants and macros
 #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
 
-#define SHORT_DELAY 5
-#define RETURN_DELAY 1000
-#define SEND_DELAY 10
+#define SHORT_DELAY 1
+#define RETURN_DELAY 100
+#define SEND_DELAY 1
 #define DISPLAY_LENGTH 16
 
 
 void setDataLines(unsigned char data) {
-	PRT2DR &= 0x0F;
-	PRT2DR |= data << 4;
+	PRT2DR = (PRT2DR & 0x0F) | (data << 4);
 }
 
 void setE(void) {
@@ -39,28 +38,29 @@ void delay(unsigned int loops) {
 	for (i = 0; i < loops; i++);
 }
 
-void sendByte(unsigned char myByte, BOOL isData) {
+void sendNibble(unsigned char myByte, BOOL isData) {
+	
 	if (isData) {
 		setRs();	
 	} else {
 		clearRs();
 	}
 	
+	setDataLines(myByte);
 	setE();
-	setDataLines(myByte >> 4);
-	delay(SHORT_DELAY);
 	clearE();
+}
+
+void sendByte(unsigned char myByte, BOOL isData) {
 	
-	delay(SHORT_DELAY);
+	sendNibble(myByte >> 4, isData);
 	
-	setE();
-	setDataLines(myByte & 0x0F);
-	delay(SHORT_DELAY);
-	clearE();
+	sendNibble(myByte & 0x0F, isData);
 	
 	delay(SEND_DELAY);
 	
 }
+
 
 void returnHome(void) {
 	sendByte(0x02, FALSE);
@@ -82,21 +82,33 @@ void modeSet(BOOL increment, BOOL scroll) {
 		
 }
 
-char displayBuffer[DISPLAY_LENGTH + 1] = {'E', 'W', 'A', ' ', 'L', 'I', 'P', 'I', 'N', 'S', 'K', 'A', ' ', ' ', ' ', ' ', (char )0};
+char displayBuffer[DISPLAY_LENGTH + 1] = {'E', 'W', 'A', ' ', 'L', 'I', 'P', 'I', 'N', 'S', 'K', 'A', (char)0x3F, ' ', ' ', ' ', (char )0};
 
 void refreshDisplay(void) {
 	int i;
 	
 	returnHome();
-	for (i = 0; i < DISPLAY_LENGTH; i++) {
+	for (i = 0; i < 8; i++) {
+		sendByte(displayBuffer[i], TRUE);
+	}
+	//Go to the first character of the second line
+	sendByte(0xC0, FALSE);
+	for (i = 8; i < DISPLAY_LENGTH; i++) {
 		sendByte(displayBuffer[i], TRUE);
 	}
 	
 }
 
 void initDisplay(void) {
-	modeSet(TRUE, FALSE);
 	
+	delay(4000);
+
+	//Function set
+	sendNibble(0x02, FALSE);
+	sendByte(0x28, FALSE);
+	sendByte(0x06, FALSE);
+	sendByte(0x0C, FALSE);
+		
 }
 
 void main(void)
@@ -104,13 +116,14 @@ void main(void)
 	// M8C_EnableGInt ; // Uncomment this line to enable Global Interrupts
 	// Insert your main routine code here.
 	
+	//unsigned char iDisplay = 0;
+	
 	initDisplay();
+	refreshDisplay();
 	
 	while (1) {
-		refreshDisplay();
 		delay(10000);
 	}
-	
 	
 	
 }

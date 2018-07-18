@@ -1,6 +1,6 @@
 Project:      output/displayLab
 Build Number: 0
-Date:         Tue Jul 17 22:39:04 2018
+Date:         Wed Jul 18 23:59:55 2018
 Compiler:     ICCM8C
 Version:      7.05.00
 
@@ -39,24 +39,25 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                            text   02D2   011B =    283. bytes (rel,con,rom,code)
+                            text   02D2   0162 =    354. bytes (rel,con,rom,code)
 
        Addr  Global Symbol
       -----  --------------------------------
        02D2  _setDataLines
        02D2  __text_start
-       02E7  _setE
-       02EB  _clearE
-       02EF  _setRs
-       02F3  _clearRs
-       02F7  _delay
-       0316  _sendByte
-       0365  _returnHome
-       0378  _modeSet
-       039D  _refreshDisplay
-       03CE  _initDisplay
-       03D9  _main
-       03ED  __text_end
+       02E6  _setE
+       02EA  _clearE
+       02EE  _setRs
+       02F2  _clearRs
+       02F6  _delay
+       0315  _sendNibble
+       032F  _sendByte
+       0357  _returnHome
+       036A  _modeSet
+       038F  _refreshDisplay
+       03F1  _initDisplay
+       0420  _main
+       0434  __text_end
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------

@@ -1,9 +1,9 @@
 XH
-H 3 areas F global symbols
+H 3 areas 10 global symbols
 M main.c
 S __r0 Ref0000
 S __r1 Ref0000
-A text size 11B flags 0
+A text size 162 flags 0
 dbfile ./main.c
 dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
 dbfunc e setDataLines 0 fV
@@ -11,169 +11,181 @@ dbsym l data FFFFFFFC c
 dbline FFFFFFFF 0
 dbline E 2
 dbline F 2
-dbline 10 5
-dbline FFFFFFFE 13
-dbline 0 14
-dbfunc e setE 15 fV
-dbline FFFFFFFF 15
-dbline 13 15
-dbline 14 15
-dbline FFFFFFFE 18
-dbline 0 18
-dbfunc e clearE 19 fV
-dbline FFFFFFFF 19
-dbline 17 19
-dbline 18 19
-dbline FFFFFFFE 1C
-dbline 0 1C
-dbfunc e setRs 1D fV
-dbline FFFFFFFF 1D
-dbline 1B 1D
-dbline 1C 1D
-dbline FFFFFFFE 20
-dbline 0 20
-dbfunc e clearRs 21 fV
-dbline FFFFFFFF 21
-dbline 1F 21
-dbline 20 21
-dbline FFFFFFFE 24
-dbline 0 24
-dbfunc e delay 25 fV
+dbline FFFFFFFE 12
+dbline 0 13
+dbfunc e setE 14 fV
+dbline FFFFFFFF 14
+dbline 12 14
+dbline 13 14
+dbline FFFFFFFE 17
+dbline 0 17
+dbfunc e clearE 18 fV
+dbline FFFFFFFF 18
+dbline 16 18
+dbline 17 18
+dbline FFFFFFFE 1B
+dbline 0 1B
+dbfunc e setRs 1C fV
+dbline FFFFFFFF 1C
+dbline 1A 1C
+dbline 1B 1C
+dbline FFFFFFFE 1F
+dbline 0 1F
+dbfunc e clearRs 20 fV
+dbline FFFFFFFF 20
+dbline 1E 20
+dbline 1F 20
+dbline FFFFFFFE 23
+dbline 0 23
+dbfunc e delay 24 fV
 dbsym l i 0 I
 dbsym l loops FFFFFFFB i
-dbline FFFFFFFF 25
-dbline 23 29
-dbline 27 29
-dbline 27 31
-dbline 27 31
-dbline 27 36
-dbline FFFFFFFE 40
-dbline 0 43
-dbfunc e sendByte 44 fV
+dbline FFFFFFFF 24
+dbline 22 28
+dbline 26 28
+dbline 26 30
+dbline 26 30
+dbline 26 35
+dbline FFFFFFFE 3F
+dbline 0 42
+dbfunc e sendNibble 43 fV
 dbsym l isData FFFFFFFB c
 dbsym l myByte FFFFFFFC c
-dbline FFFFFFFF 44
-dbline 2A 46
-dbline 2B 46
-dbline 2C 4B
-dbline 2C 4B
-dbline 2D 4D
-dbline 2D 4F
-dbline 2E 4F
-dbline 2F 51
-dbline 31 51
-dbline 32 53
-dbline 33 5E
-dbline 34 68
-dbline 36 6A
-dbline 38 72
-dbline 39 74
-dbline 3A 7D
-dbline 3B 85
-dbline 3D 87
-dbline FFFFFFFE 91
-dbline 0 92
-dbfunc e returnHome 93 fV
-dbline FFFFFFFF 93
-dbline 41 93
-dbline 42 93
-dbline 43 9B
-dbline FFFFFFFE A5
-dbline 0 A5
-dbfunc e modeSet A6 fV
+dbline FFFFFFFF 43
+dbline 29 45
+dbline 2B 45
+dbline 2C 4A
+dbline 2C 4A
+dbline 2D 4C
+dbline 2D 4E
+dbline 2E 4E
+dbline 2F 50
+dbline 31 50
+dbline 32 57
+dbline 33 59
+dbline FFFFFFFE 5B
+dbline 0 5C
+dbfunc e sendByte 5D fV
+dbsym l isData FFFFFFFB c
+dbsym l myByte FFFFFFFC c
+dbline FFFFFFFF 5D
+dbline 36 5F
+dbline 38 5F
+dbline 3A 6F
+dbline 3C 79
+dbline FFFFFFFE 83
+dbline 0 84
+dbfunc e returnHome 85 fV
+dbline FFFFFFFF 85
+dbline 41 85
+dbline 42 85
+dbline 43 8D
+dbline FFFFFFFE 97
+dbline 0 97
+dbfunc e modeSet 98 fV
 dbsym l byteToSend 0 c
 dbsym l scroll FFFFFFFB c
 dbsym l increment FFFFFFFC c
-dbline FFFFFFFF A6
-dbline 46 AA
-dbline 47 AA
-dbline 49 AD
-dbline 4A B2
-dbline 4A B2
-dbline 4B B5
-dbline 4D B5
-dbline 4E BA
-dbline 4E BA
-dbline 4F BD
-dbline 51 BD
-dbline FFFFFFFE C7
-dbline 0 CA
-dbfunc e refreshDisplay CB fV
+dbline FFFFFFFF 98
+dbline 46 9C
+dbline 47 9C
+dbline 49 9F
+dbline 4A A4
+dbline 4A A4
+dbline 4B A7
+dbline 4D A7
+dbline 4E AC
+dbline 4E AC
+dbline 4F AF
+dbline 51 AF
+dbline FFFFFFFE B9
+dbline 0 BC
+dbfunc e refreshDisplay BD fV
 dbsym l i 0 I
-dbline FFFFFFFF CB
-dbline 57 CF
-dbline 5A CF
-dbline 5B D1
-dbline 5B D7
-dbline 5C D7
-dbline 5D E7
-dbline 5B E7
-dbline 5B EC
-dbline FFFFFFFE F8
-dbline 0 FB
-dbfunc e initDisplay FC fV
-dbline FFFFFFFF FC
-dbline 61 FC
-dbline 62 FC
-dbline FFFFFFFE 106
-dbline 0 106
-dbfunc e main 107 fV
-dbline FFFFFFFF 107
-dbline 67 107
-dbline 6B 107
-dbline 6D 10B
-dbline 6E 10B
-dbline 6F 10D
-dbline 70 117
-dbline 6D 117
-dbline FFFFFFFE 119
-dbline 0 119
-S _main Def0107
+dbline FFFFFFFF BD
+dbline 57 C1
+dbline 5A C1
+dbline 5B C3
+dbline 5B C9
+dbline 5C C9
+dbline 5D D9
+dbline 5B D9
+dbline 5B DE
+dbline 5F EA
+dbline 60 F4
+dbline 60 FA
+dbline 61 FA
+dbline 62 10A
+dbline 60 10A
+dbline 60 10F
+dbline FFFFFFFE 11B
+dbline 0 11E
+dbfunc e initDisplay 11F fV
+dbline FFFFFFFF 11F
+dbline 66 11F
+dbline 68 11F
+dbline 6B 129
+dbline 6C 131
+dbline 6D 13B
+dbline 6E 143
+dbline FFFFFFFE 14D
+dbline 0 14D
+dbfunc e main 14E fV
+dbline FFFFFFFF 14E
+dbline 73 14E
+dbline 79 14E
+dbline 7A 150
+dbline 7C 154
+dbline 7D 154
+dbline 7E 15E
+dbline 7C 15E
+dbline FFFFFFFE 160
+dbline 0 160
+S _main Def014E
 S _setDataLines Def0000
-S _refreshDisplay Def00CB
-S _clearRs Def0021
-S _modeSet Def00A6
-S _delay Def0025
-S _setRs Def001D
-S _returnHome Def0093
-S _sendByte Def0044
-S _clearE Def0019
-S _initDisplay Def00FC
-S _setE Def0015
+S _refreshDisplay Def00BD
+S _clearRs Def0020
+S _modeSet Def0098
+S _sendNibble Def0043
+S _delay Def0024
+S _setRs Def001C
+S _returnHome Def0085
+S _sendByte Def005D
+S _clearE Def0018
+S _initDisplay Def011F
+S _setE Def0014
 A data size 11 flags 20
 dbfile D:\DOCUME~1\PSOCDE~1.4PR\DISPLA~1\DISPLA~1\main.c
 dbsym e displayBuffer 0 A[17:17]c
 S _displayBuffer Def0000
 A idata size 11 flags 1
-T 00 00 10 4F 41 08 0F 52 FC 64 64 64 64 53 00 00
-R 00 00 00 00 03 0E 00 00
-T 00 0D 5D 08 2A 00 00 60 08 20 7F 43 08 08 7F 41
-R 00 00 00 00 03 05 00 00
-T 00 1A 08 F7 7F 43 08 04 7F 41 08 FB 7F 10 4F 38
+T 00 00 10 4F 52 FC 64 64 64 64 53 00 00 5D 08 21
+R 00 00 00 00 03 0B 00 00
+T 00 0D 0F 2A 00 00 60 08 20 7F 43 08 08 7F 41 08
+R 00 00 00 00 03 04 00 00
+T 00 1A F7 7F 43 08 04 7F 41 08 FB 7F 10 4F 38 02
 R 00 00 00 00
-T 00 28 02 56 01 00 56 00 00 80 06 77 01 0F 00 00
+T 00 28 56 01 00 56 00 00 80 06 77 01 0F 00 00 52
 R 00 00 00 00
-T 00 36 52 01 13 FC 52 00 1B FB CF F2 38 FE 20 7F
+T 00 36 01 13 FC 52 00 1B FB CF F2 38 FE 20 7F 10
 R 00 00 00 00
-T 00 44 10 4F 3D FB 00 A0 05 9F D0 80 03 9F D0 9F
+T 00 44 4F 3D FB 00 A0 05 9F D0 80 03 9F D0 52 FC
 R 00 00 00 00
-T 00 52 C2 52 FC 67 67 67 67 21 0F 08 9F A2 50 00
+T 00 52 08 9F AB 38 FF 9F BB 9F BD 20 7F 10 4F 52
 R 00 00 00 00
-T 00 60 08 50 05 08 9F BF 38 FD 9F AF 50 00 08 50
+T 00 60 FB 08 52 FC 67 67 67 67 21 0F 08 9F D6 38
 R 00 00 00 00
-T 00 6E 05 08 9F B3 9F A1 52 FC 21 0F 08 9F 85 38
+T 00 6E FE 52 FB 08 52 FC 21 0F 08 9F CA 50 00 08
 R 00 00 00 00
-T 00 7C FD 50 00 08 50 05 08 9F A0 9F 92 50 00 08
+T 00 7C 50 01 08 9F A3 38 FC 20 7F 50 00 08 50 02
 R 00 00 00 00
-T 00 8A 50 0A 08 9F 96 38 FC 20 7F 50 00 08 50 02
+T 00 8A 08 9F D0 50 00 08 50 64 08 9F 8F 38 FC 7F
 R 00 00 00 00
-T 00 98 08 9F A9 50 03 08 50 E8 08 9F 82 38 FC 7F
+T 00 98 10 4F 38 01 56 00 04 3D FC 00 A0 04 2F 00
 R 00 00 00 00
-T 00 A6 10 4F 38 01 56 00 04 3D FC 00 A0 04 2F 00
+T 00 A6 02 3D FB 00 A0 04 2F 00 01 50 00 08 52 00
 R 00 00 00 00
-T 00 B4 02 3D FB 00 A0 04 2F 00 01 50 00 08 52 00
-R 00 00 00 00
-T 00 C2 08 9F 7F 38 FE 38 FF 20 7F
+T 00 B4 08 9F A6 38 FE 38 FF 20 7F
 R 00 00 00 00
 T 00 00 45 57
 R 00 00 00 02
@@ -187,21 +199,35 @@ T 00 08 4E 53
 R 00 00 00 02
 T 00 0A 4B 41
 R 00 00 00 02
-T 00 0C 20 20
+T 00 0C 3F 20
 R 00 00 00 02
 T 00 0E 20 20
 R 00 00 00 02
 T 00 10 00
 R 00 00 00 02
-T 00 CB 10 4F 38 02 9F C2 56 01 00 56 00 00 50 01
+T 00 BD 10 4F 38 02 9F C2 56 01 00 56 00 00 50 01
 R 00 00 00 00
-T 00 D9 08 52 01 01 00 00 53 00 00 3E 00 00 08 9F
+T 00 CB 08 52 01 01 00 00 53 00 00 3E 00 00 08 9F
 R 00 00 00 00 01 06 00 01 03 09 00 01 03 0C 00 01
-T 00 E4 5F 38 FE 77 01 0F 00 00 52 01 11 10 52 00
+T 00 D6 86 38 FE 77 01 0F 00 00 52 01 11 08 52 00
 R 00 00 00 00
-T 00 F2 31 80 19 80 CF E0 38 FE 20 7F 50 00 08 50
+T 00 E4 31 80 19 80 CF E0 50 00 08 50 C0 08 9F 6B
 R 00 00 00 00
-T 01 00 01 08 9F A2 38 FE 7F 9F F3 80 0D 9F BE 50
+T 00 F2 38 FE 56 01 08 56 00 00 50 01 08 52 01 01
 R 00 00 00 00
-T 01 0E 27 08 50 10 08 9F 10 38 FE 8F F3 8F FF
+T 01 00 00 00 53 00 00 3E 00 00 08 9F 55 38 FE 77
+R 00 00 00 00 01 02 00 01 03 05 00 01 03 08 00 01
+T 01 0B 01 0F 00 00 52 01 11 10 52 00 31 80 19 80
+R 00 00 00 00
+T 01 19 CF E0 38 FE 20 7F 50 0F 08 50 A0 08 9E FD
+R 00 00 00 00
+T 01 27 38 FE 50 00 08 50 02 08 9F 12 50 00 08 50
+R 00 00 00 00
+T 01 35 28 08 9F 24 38 FC 50 00 08 50 06 08 9F 1A
+R 00 00 00 00
+T 01 43 50 00 08 50 0C 08 9F 12 38 FC 7F 9F CF 9F
+R 00 00 00 00
+T 01 51 6B 80 0B 50 27 08 50 10 08 9E C8 38 FE 8F
+R 00 00 00 00
+T 01 5F F5 8F FF
 R 00 00 00 00
